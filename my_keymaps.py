@@ -147,19 +147,19 @@ def init_media_keymaps() -> list[Key]:
         Key(
             [],
             "XF86AudioLowerVolume",
-            lazy.spawn("amixer sset Master 5%-"),
+            lazy.spawn("amixer -D pulse set Master 5%-"),
             desc="Lower Volume by 5%",
         ),
         Key(
             [],
             "XF86AudioRaiseVolume",
-            lazy.spawn("amixer sset Master 5%+"),
+            lazy.spawn("amixer -D pulse set Master 5%+"),
             desc="Raise Volume by 5%",
         ),
         Key(
             [],
             "XF86AudioMute",
-            lazy.spawn("amixer sset Master 1+ toggle"),
+            lazy.spawn("amixer -D pulse set Master 1+ toggle"),
             desc="Mute/Unmute Volume",
         ),
         Key(

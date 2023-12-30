@@ -12,14 +12,13 @@ from libqtile import bar
 from qtile_extras import widget
 from qtile_extras.widget.decorations import BorderDecoration
 import my_colors
-from my_colors import onedark
 import my_options as opt
-import utils
+
+# import utils
 
 theme = my_colors.get_theme(opt.THEME)
 
 widget_decor = [
-    # RectDecoration(colour=onedark.bg, radius=5, filled=True, padding_y=0)
     BorderDecoration(colour=theme.cyan, border_width=[0, 0, 1, 0], padding_y=0)
 ]
 
@@ -52,7 +51,7 @@ def __primary_screen() -> Screen:
                     foreground=theme.pink,
                     font="Font Awesome 5",
                     fontsize=20,
-                    fmt=" 󰥔",
+                    fmt="| 󰥔",
                     decorations=widget_decor,
                 ),
                 widget.Clock(
@@ -137,13 +136,15 @@ def __primary_screen() -> Screen:
                     foreground=theme.bg,
                     linewidth=2,
                 ),
-                widget.Battery(
-                    format="󱊣{percent:2.0%}  {hour:d}:{min:02d}\n{watt:.2f}W",
-                    padding=5,
+                widget.NvidiaSensors(
+                    fmt="GPU: {}",
+                    tag_sensor="gpu",
                     foreground=theme.fg,
                     background=theme.bg,
+                    foreground_alert=theme.red,
+                    threshold=90,
+                    padding=5,
                     decorations=widget_decor,
-                    update_interval=30,
                 ),
                 widget.Sep(
                     background=theme.bg,
@@ -175,7 +176,8 @@ def __primary_screen() -> Screen:
                     background=theme.bg,
                     foreground=theme.fg,
                     fontsize=20,
-                    fmt=utils.get_wifi_icon("wlp2s0"),
+                    # fmt=utils.get_wifi_icon("wlp2s0"),
+                    fmt="wifi",
                     decorations=widget_decor,
                 ),
                 widget.Sep(
@@ -204,18 +206,54 @@ def __primary_screen() -> Screen:
 
 def __secondary_screen() -> Screen:
     return Screen(
-        bottom=bar.Bar(
+        top=bar.Bar(
             [
-                widget.GroupBox(),
-                widget.Spacer(),
-                widget.Clock(
-                    format="󰥔 %H:%M | 󰃮 %a, %d %b %Y",
-                    foreground=theme.fg,
+                widget.TextBox(
                     background=theme.bg,
-                    padding=5,
+                    foreground=theme.pink,
+                    font="Font Awesome 5",
+                    fontsize=20,
+                    fmt="󰃮",
+                    decorations=widget_decor,
                 ),
+                widget.Clock(
+                    format="%a, %d %b %Y",
+                    background=theme.bg,
+                    foreground=theme.fg,
+                    padding=5,
+                    decorations=widget_decor,
+                ),
+                widget.TextBox(
+                    background=theme.bg,
+                    foreground=theme.pink,
+                    font="Font Awesome 5",
+                    fontsize=20,
+                    fmt="| 󰥔",
+                    decorations=widget_decor,
+                ),
+                widget.Clock(
+                    format="%H:%M ",
+                    background=theme.bg,
+                    foreground=theme.fg,
+                    padding=5,
+                    decorations=widget_decor,
+                ),
+                widget.Spacer(background=theme.bg),
+                widget.GroupBox(
+                    highlight_method="text",
+                    background=theme.bg,
+                    foreground=theme.fg,
+                    block_highlight_text_color=theme.fg,
+                    this_current_screen_border=theme.orange,
+                    other_screen_border=theme.light_bg,
+                    inactive=theme.light_bg,
+                    active=theme.fg,
+                    margin=5,
+                    decorations=widget_decor,
+                ),
+                widget.Spacer(background=theme.bg),
             ],
-            24,
+            35,
         ),
         wallpaper=opt.WALLPAPER,
         wallpaper_mode="fill",

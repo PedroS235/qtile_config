@@ -19,11 +19,11 @@ def init_groups(keys: list[Key]) -> list[Group]:
     # Browser Group
     groups.append(Group("2", label="2", spawn=opt.BROWSER))
     # Chat Group
-    groups.append(Group("3", label="3"))
+    groups.append(Group("3", label="3", spawn=opt.CHAT))
     # Music Group
-    groups.append(Group("4", label="4"))
+    groups.append(Group("4", label="4", spawn=opt.MUSIC))
     # File Manager Group
-    groups.append(Group("5", label="5"))
+    groups.append(Group("5", label="5", spawn=opt.MAIL))
     groups.append(Group("6", label="6"))
     groups.append(Group("7", label="7"))
     groups.append(Group("8", label="8"))

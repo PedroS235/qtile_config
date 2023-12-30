@@ -18,7 +18,7 @@ theme = my_colors.get_theme(opt.THEME)
 border_focus = theme.cyan
 border_normal = theme.fg
 border_width = 2
-border_margin = 10
+border_margin = 5
 
 
 def init_layouts() -> list:
