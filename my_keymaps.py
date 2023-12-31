@@ -190,17 +190,9 @@ def init_screenshot_keymaps() -> list[Key]:
         Key(
             ["control", "shift"],
             "s",
-            lazy.spawn(
-                "scrot '/tmp/screenshot_%Y-%m-%d-%H:%M.png' -s -e 'xclip -selection clipboard -t image/png -i $f'"
-            ),
-            desc="Take a screenshot of a selected area",
+            lazy.spawn("/home/pedros235/.config/qtile/scripts/screenshot.sh"),
+            desc="Take a screenshot",
         ),
-        # Key(
-        #     [opt.SUPER, "control", "shift"],
-        #     "s",
-        #     lazy.spawncmd("scrot -u ~/Pictures/Screenshots/screenshot"),
-        #     desc="Take a screenshot of the current window",
-        # ),
     ]
 
 

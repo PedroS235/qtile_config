@@ -43,4 +43,4 @@ WM_NAME = "LG3D"
 THEME = "onedark"  # Possible values: dracula, catppuccino, onedark
 
 # Wallpaper Path
-WALLPAPER = "/home/pedros235/Pictures/wallpaper.jpg"
+WALLPAPER = "/home/pedros235/Pictures/wallpaper.png"
